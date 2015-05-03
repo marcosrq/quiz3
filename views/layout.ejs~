@@ -14,4 +14,11 @@
 <span><a href="/quizes/question">Preguntas</a></span>
 <span><a href="/author">Creditos</a></span>
 </nav>
-
+<section class="main" id="s1">
+<%- body %>
+</section>
+<footer class="main" id="f1">
+<a href="http://github.com/marcosrq">Enlace a Github</a>
+</div>
+</body>
+</html>

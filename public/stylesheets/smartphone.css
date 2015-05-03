@@ -1,0 +1,13 @@
+body 					{
+background: #F4EEEB;
+font-size:10px; }
+
+#page-wrap:after 		{
+content: "Smartphone Layout";
+color:white;
+background:#373534;
+ }
+
+h2 span, section h3 	{display: none;}
+body 					{font-size: xx-large; }
+footer, input 			{font-size;}
