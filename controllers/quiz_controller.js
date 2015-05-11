@@ -1,4 +1,5 @@
 var models = require('../models/models.js');
+var busqueda = "";
 
 //Autoload
 exports.load = function(req, res, next, quizId) {
@@ -13,12 +14,14 @@ next();
 };
 
 //GET /quizes
-exports.index= function(req,res){
-models.Quiz.findAll().then(function(quizes) {
-res.render('quizes/index.ejs', {quizes: quizes});
-}
-).catch(function(error){ next(error);});
-};
+//exports.index= function(req,res){
+//models.Quiz.findAll().then(function(quizes) {
+//res.render('quizes/index.ejs', {quizes: quizes});
+//}
+//).catch(function(error){ next(error);});
+//};
+
+
 
 //GET /quizes/:id
 exports.show = function(req,res){
@@ -38,3 +41,22 @@ res.render('quizes/answer', {quiz: req.quiz, respuesta: 'Incorrecto'});
 })
 };
 
+
+// Get /search
+exports.index = function(req, res){
+ if(req.query.search){
+ busqueda = "%"+req.query.search+"%";
+ }
+ if(busqueda){
+ models.Quiz.findAll({where: ["pregunta like ?", busqueda]}).then(function(quizes){
+ res.render('quizes/search.ejs', {quizes : quizes});
+ })
+ }else{
+ models.Quiz.findAll().then(function(quizes){
+ res.render('quizes/index.ejs', {quizes : quizes});
+ })
+ }
+
+ busqueda = "";
+
+};
